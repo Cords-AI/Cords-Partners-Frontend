@@ -1,0 +1,30 @@
+@import "./lib/kit/frontendkit.scss";
+
+@import "./lib/kit/styles/viewport";
+@include implement-viewport;
+
+@import "./lib/kit/styles/base";
+@include implement-body;
+
+@import "./lib/kit/styles/layout";
+@include implement-layout;
+
+@import "./lib/kit/styles/palette";
+@include implement-palette;
+
+@import "./lib/cordskit/framework/fonts-nuxt.scss";
+
+:root {
+  --text-base-font-family: "Inter Variable Cords";
+}
+
+body, html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
