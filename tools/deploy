@@ -1,0 +1,16 @@
+#!/bin/bash
+set -ex
+
+j2 .env.j2 > .env
+docker compose run -u $(id -u) web npm install
+docker compose run -u $(id -u) web npx nuxi build
+
+rsync \
+  -a . \
+  --exclude=/docker-compose.override.yml \
+  --delete \
+  $1
+
+cd $1
+docker compose down || true
+docker compose up -d

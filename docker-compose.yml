@@ -1,0 +1,21 @@
+version: '3'
+
+networks:
+  default:
+    name: traefik
+    external: true
+
+services:
+  web:
+    image: registry.ubriety.dev/mentor-canada/node:1.0.0
+    restart: always
+    volumes:
+      - .:/app
+    command: node .output/server/index.mjs
+    working_dir: /app
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.$ROUTERNAME.rule=Host(`$HOSTNAME`)
+      - traefik.http.routers.$ROUTERNAME.tls=true
+      - traefik.http.routers.$ROUTERNAME.entrypoints=https
+      - traefik.http.services.$ROUTERNAME.loadbalancer.server.port=3000

@@ -1,6 +1,6 @@
 [submodule "lib/kit"]
 	path = lib/kit
-	url = ../lib/frontendkit.git
+	url = ../../lib/frontendkit.git
 [submodule "lib/cordskit"]
 	path = lib/cordskit
-	url = ../cords/CordsFrontendKit.git
+	url = ../CordsFrontendKit.git
