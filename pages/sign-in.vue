@@ -1,10 +1,12 @@
 <template>
-  <KitButton
-    type="submit"
-    @click="onContinueWithGoogle"
-  >
-    Continue with Google
-  </KitButton>
+  <div class="align-center">
+    <CordsKitButton
+      type="submit"
+      @click="onContinueWithGoogle"
+    >
+      Continue with Google
+    </CordsKitButton>
+  </div>
 </template>
 
 <script lang="ts" setup>

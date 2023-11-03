@@ -1,7 +1,9 @@
 <template>
-  <KitButton @click="onSignOut">
-    Sign Out
-  </KitButton>
+  <div class="align-center">
+    <CordsKitButton @click="onSignOut">
+      Sign Out
+    </CordsKitButton>
+  </div>
 </template>
 
 <script lang="ts" setup>

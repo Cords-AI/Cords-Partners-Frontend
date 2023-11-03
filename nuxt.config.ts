@@ -5,14 +5,20 @@ export default defineNuxtConfig({
   ],
   components: [
     { path: '~/lib/kit/components', prefix: 'Kit' },
+    { path: '~/lib/cordskit/nuxt-components', prefix: 'CordsKit' },
     '~/components',
   ],
   alias: {
     "kit": "~/lib/kit",
   },
   app: {
-    buildAssetsDir: '/_app/cords-partner-portal/_nuxt/',
+    buildAssetsDir: '/_app/partner-portal/_nuxt/',
     rootId: 'app',
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/_app/partner-portal/favicon.png' },
+      ]
+    }
   },
   runtimeConfig: {
     public: {

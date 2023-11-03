@@ -14,17 +14,4 @@
 
 @import "./lib/cordskit/framework/fonts-nuxt.scss";
 
-:root {
-  --text-base-font-family: "Inter Variable Cords";
-}
-
-body, html {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+@import "./todo.scss";

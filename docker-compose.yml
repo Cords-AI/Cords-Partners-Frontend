@@ -21,6 +21,21 @@ services:
       - traefik.http.routers.$ROUTERNAME.entrypoints=https
       - traefik.http.services.$ROUTERNAME.loadbalancer.server.port=3000
 
+  dev:
+    image: ghcr.io/cords-connect/node:1.0.0
+    profiles: ['manual']
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: npm run dev
+    user: "1000:1000"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.$ROUTERNAME.rule=Host(`$HOSTNAME`)
+      - traefik.http.routers.$ROUTERNAME.tls=true
+      - traefik.http.routers.$ROUTERNAME.entrypoints=https
+      - traefik.http.services.$ROUTERNAME.loadbalancer.server.port=3000
+
   test:
     image: ghcr.io/cords-connect/node:1.0.0
     profiles: ['manual']
@@ -28,3 +43,4 @@ services:
       - .:/app
     working_dir: /app
     command: ./tools/test
+    user: "1000:1000"
