@@ -1,7 +1,8 @@
 export default defineNuxtConfig({
   css: [`~/style.scss`],
   modules: [
-    'nuxt-quasar-ui'
+    'nuxt-quasar-ui',
+    '@vueuse/nuxt',
   ],
   components: [
     { path: '~/lib/kit/components', prefix: 'Kit' },

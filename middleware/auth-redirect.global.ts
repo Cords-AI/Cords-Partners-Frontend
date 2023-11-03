@@ -1,7 +1,8 @@
+import Backend from "~/src/Backend";
+
 export default defineNuxtRouteMiddleware(async (to, from) => {
-  const config = useRuntimeConfig();
-  const apiUrl = config.API_URL_SSR || config.public.API_URL;
-  const user = await $fetch(`${apiUrl}/user`);
+  const backend = Backend.getInstance();
+  const user = await backend.getUser();
 
   if (user.id && to.path === '/sign-in') {
     return navigateTo('/');

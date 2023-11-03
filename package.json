@@ -11,13 +11,14 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "nuxt": "^3.8.0",
-    "vue": "^3.3.6",
-    "vue-router": "^4.2.5",
+    "@vueuse/nuxt": "^10.5.0",
     "eslint": "^8.51.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
-    "eslint-plugin-vue": "^9.17.0"
+    "eslint-plugin-vue": "^9.17.0",
+    "nuxt": "^3.8.0",
+    "vue": "^3.3.6",
+    "vue-router": "^4.2.5"
   },
   "dependencies": {
     "firebase": "^10.5.0",
