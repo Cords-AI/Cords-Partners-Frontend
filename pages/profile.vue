@@ -1,5 +1,7 @@
 <template>
-  <KitButton @click="onSignOut">Sign Out</KitButton>
+  <KitButton @click="onSignOut">
+    Sign Out
+  </KitButton>
 </template>
 
 <script lang="ts" setup>
@@ -13,5 +15,5 @@ const onSignOut = async () => {
   const auth = getAuth(firebaseApp);
   await signOut(auth);
   router.push('/sign-in');
-}
+};
 </script>

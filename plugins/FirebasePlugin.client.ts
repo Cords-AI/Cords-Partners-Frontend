@@ -1,8 +1,8 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 
 export default defineNuxtPlugin({
   hooks: {
-    'app:created'() {
+    'app:created': function () { // eslint-disable-line
       const nuxtApp = useNuxtApp();
       const config = useRuntimeConfig();
       const firebaseConfig: any = {
@@ -11,10 +11,10 @@ export default defineNuxtPlugin({
         projectId: config.public.FIREBASE_PROJECT_ID,
         storageBucket: config.public.FIREBASE_STORAGE_BUCKET,
         messagingSenderId: config.public.FIREBASE_MESSAGING_SENDER_ID,
-        appId: config.public.FIREBASE_APP_ID
-      }
+        appId: config.public.FIREBASE_APP_ID,
+      };
       const firebaseApp = initializeApp(firebaseConfig);
       nuxtApp.vueApp.provide('firebaseApp', firebaseApp);
-    }
-  }
-})
+    },
+  },
+});

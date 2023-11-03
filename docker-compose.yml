@@ -7,15 +7,24 @@ networks:
 
 services:
   web:
-    image: registry.ubriety.dev/mentor-canada/node:1.0.0
+    image: ghcr.io/cords-connect/node:1.0.0
+    build: ./docker
     restart: always
     volumes:
       - .:/app
-    command: node .output/server/index.mjs
     working_dir: /app
+    command: node .output/server/index.mjs
     labels:
       - traefik.enable=true
       - traefik.http.routers.$ROUTERNAME.rule=Host(`$HOSTNAME`)
       - traefik.http.routers.$ROUTERNAME.tls=true
       - traefik.http.routers.$ROUTERNAME.entrypoints=https
       - traefik.http.services.$ROUTERNAME.loadbalancer.server.port=3000
+
+  test:
+    image: ghcr.io/cords-connect/node:1.0.0
+    profiles: ['manual']
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ./tools/test
