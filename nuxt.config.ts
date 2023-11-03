@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
+    API_URL_SSR: process.env.API_URL_SSR,
     public: {
       FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
       FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
@@ -28,6 +29,7 @@ export default defineNuxtConfig({
       FIREBASE_STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET,
       FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
       FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
+      API_URL: process.env.API_URL
     }
   },
 })

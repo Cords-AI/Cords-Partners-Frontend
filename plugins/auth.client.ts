@@ -1,8 +1,9 @@
 import { initializeApp } from 'firebase/app';
+import User from '../src/User';
 
 export default defineNuxtPlugin({
   hooks: {
-    'app:created': function () { // eslint-disable-line
+    'app:created': async () => { // eslint-disable-line
       const nuxtApp = useNuxtApp();
       const config = useRuntimeConfig();
       const firebaseConfig: any = {

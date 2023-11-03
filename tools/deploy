@@ -12,5 +12,6 @@ rsync \
   $1
 
 cd $1
-docker compose down || true
-docker compose up -d
+docker compose down --remove-orphans || true
+docker compose up -d web
+docker compose up -d jsonserver

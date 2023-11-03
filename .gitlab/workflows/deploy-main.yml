@@ -11,6 +11,8 @@ Deploy Main:
     FIREBASE_STORAGE_BUCKET: cords-f3c79.appspot.com
     FIREBASE_MESSAGING_SENDER_ID: 758862061723
     FIREBASE_APP_ID: 1:758862061723:web:1a99cace4ece114c1be63e
+    API_URL: https://backend-partner-portal-cords.stage.ubriety.cloud
+    API_URL_SSR: http://backend-partner-portal-cords.stage.ubriety.cloud:3001
   rules:
     - if: $CI_COMMIT_BRANCH == 'main'
   stage: setup
