@@ -1,32 +1,63 @@
 <template>
-  <div ref="userComponent" class="user-component">
-
+  <div
+    ref="userComponent"
+    class="user-component"
+  >
     <template v-if="!user?.id">
       <RouterLink to="/sign-in">
-        <CordsKitButton class="compact rect outline">Sign In</CordsKitButton>
+        <CordsKitButton class="compact rect outline">
+          Sign In
+        </CordsKitButton>
       </RouterLink>
     </template>
 
     <template v-else>
-      <div class="user-avatar clickable"
-           :class="hasAvatar ? 'has-avatar' : 'no-avatar'"
-           @click.prevent.stop="show = !show"
+      <div
+        class="user-avatar clickable"
+        :class="hasAvatar ? 'has-avatar' : 'no-avatar'"
+        @click.prevent.stop="show = !show"
       >
-        <div v-if="hasAvatar" class="user-avatar-content" :style="`background-image: url('${$props.user.getAvatar()}')`"></div>
-        <div v-else class="user-avatar-content">{{ $props.user.getInitials() }}</div>
+        <div
+          v-if="hasAvatar"
+          class="user-avatar-content"
+          :style="`background-image: url('${$props.user.getAvatar()}')`"
+        />
+        <div
+          v-else
+          class="user-avatar-content"
+        >
+          {{ $props.user.getInitials() }}
+        </div>
       </div>
 
-      <div class="user-dropdown" v-if="show">
+      <div
+        v-if="show"
+        class="user-dropdown"
+      >
         <div class="user-dropdown-row">
-          <div class="user-avatar"
-               :class="hasAvatar ? 'has-avatar' : 'no-avatar'"
+          <div
+            class="user-avatar"
+            :class="hasAvatar ? 'has-avatar' : 'no-avatar'"
           >
-            <div v-if="hasAvatar" class="user-avatar-content" :style="`background-image: url('${user.getAvatar()}')`"></div>
-            <div v-else class="user-avatar-content">{{ $props.user.getInitials() }}</div>
+            <div
+              v-if="hasAvatar"
+              class="user-avatar-content"
+              :style="`background-image: url('${user.getAvatar()}')`"
+            />
+            <div
+              v-else
+              class="user-avatar-content"
+            >
+              {{ $props.user.getInitials() }}
+            </div>
           </div>
           <div class="user-meta">
-            <div class="user-meta-name">{{ $props.user.getName() }}</div>
-            <div class="user-meta-email">{{ $props.user.getEmail() }}</div>
+            <div class="user-meta-name">
+              {{ $props.user.getName() }}
+            </div>
+            <div class="user-meta-email">
+              {{ $props.user.getEmail() }}
+            </div>
           </div>
         </div>
         <div class="user-dropdown-row sign-out-row">
@@ -40,23 +71,26 @@
 </template>
 
 <script lang="ts" setup>
+import Backend from '~/src/Backend';
 import type User from '~/src/User';
 
 const props = defineProps<{
   user: User
-}>()
+}>();
 
-const userComponent = ref()
-
-onClickOutside(userComponent, () => show.value = false);
+const userComponent = ref();
 
 const show = ref(false);
+onClickOutside(userComponent, () => { show.value = false; });
 
 const hasAvatar = !!props.user.getAvatar();
 
-const signOut = () => {
-  console.error('not implemented');
-}
+const backend = Backend.getInstance();
+
+const signOut = async () => {
+  await backend.signOut();
+  window.location.reload();
+};
 </script>
 
 <style lang="scss" scoped>

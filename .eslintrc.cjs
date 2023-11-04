@@ -15,7 +15,10 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'vue/no-v-html': 'off',
     'no-undef': 'off',
-    '@typescript-eslint/no-unused-vars': 'off'
+    '@typescript-eslint/no-unused-vars': 'off',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
+    'class-methods-use-this': 'off'
   }
 }
 

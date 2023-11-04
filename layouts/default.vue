@@ -8,4 +8,8 @@
 import Backend from '~/src/Backend';
 
 const user = await Backend.getInstance().getUser();
+
+useHead({
+  title: 'Cords Partner Portal',
+});
 </script>

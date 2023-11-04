@@ -5,8 +5,8 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   useHead({
     bodyAttrs: {
-      'data-path': path
-    }
+      'data-path': path,
+    },
   });
 
   return null;

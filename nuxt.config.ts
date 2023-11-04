@@ -1,5 +1,6 @@
 export default defineNuxtConfig({
   css: [`~/style.scss`],
+  ssr: false,
   modules: [
     'nuxt-quasar-ui',
     '@vueuse/nuxt',
@@ -22,7 +23,6 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
-    API_URL_SSR: process.env.API_URL_SSR,
     public: {
       FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
       FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,

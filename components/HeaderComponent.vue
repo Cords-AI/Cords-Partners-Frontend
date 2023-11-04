@@ -2,7 +2,10 @@
   <header>
     <CordsKitLogo />
     <div class="actions">
-      <UserComponent :user="user" />
+      <UserComponent
+        v-if="user"
+        :user="user"
+      />
     </div>
   </header>
 </template>
@@ -10,7 +13,7 @@
 <script lang="ts" setup>
 import type User from '~/src/User';
 
-defineProps<{user: User}>();
+defineProps<{ user: User }>();
 </script>
 
 <style lang="scss" scoped>

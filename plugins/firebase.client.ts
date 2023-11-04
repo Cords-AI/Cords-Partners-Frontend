@@ -1,5 +1,4 @@
 import { initializeApp } from 'firebase/app';
-import User from '../src/User';
 
 export default defineNuxtPlugin({
   hooks: {
