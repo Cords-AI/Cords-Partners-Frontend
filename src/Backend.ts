@@ -51,4 +51,15 @@ export default class Backend {
     });
     this.user = null;
   }
+
+  async getApiKey(refresh = false) {
+    const body: any = {};
+    body.refresh = refresh;
+    const response = await $fetch(`${this.url}/api-key`, {
+      method: 'POST',
+      credentials: 'include',
+      body: body
+    });
+    return response.data?.apiKey;
+  }
 }
