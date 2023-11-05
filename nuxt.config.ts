@@ -5,6 +5,9 @@ export default defineNuxtConfig({
     'nuxt-quasar-ui',
     '@vueuse/nuxt',
   ],
+  quasar : {
+    plugins: ['Notify']
+  },
   components: [
     { path: '~/lib/kit/components', prefix: 'Kit' },
     { path: '~/lib/cordskit/nuxt-components', prefix: 'CordsKit' },

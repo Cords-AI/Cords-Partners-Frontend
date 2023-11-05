@@ -7,15 +7,18 @@ export default class User {
 
   private email: string;
 
+  private avatar: string;
+
   constructor(data: any) {
     this.id = data.id;
     this.initials = data.initials;
     this.name = data.name;
     this.email = data.email;
+    this.avatar = data.avatar;
   }
 
   getAvatar() {
-    return null;
+    return this.avatar;
   }
 
   getInitials() {
