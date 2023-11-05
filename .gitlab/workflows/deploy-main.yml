@@ -4,20 +4,19 @@ Deploy Main:
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
     ROUTERNAME: cords-partner-portal
-    HOSTNAME: partner-portal-cords.stage.ubriety.cloud
+    HOSTNAME: partners-cords.stage.ubriety.cloud
     FIREBASE_API_KEY: AIzaSyAUUty3Ov1ZHfRczOg4IcR53NMv9NulJhk
     FIREBASE_AUTH_DOMAIN: cords-f3c79.firebaseapp.com
     FIREBASE_PROJECT_ID: cords-f3c79
     FIREBASE_STORAGE_BUCKET: cords-f3c79.appspot.com
     FIREBASE_MESSAGING_SENDER_ID: 758862061723
     FIREBASE_APP_ID: 1:758862061723:web:1a99cace4ece114c1be63e
-    API_URL: https://backend-partner-portal-cords.stage.ubriety.cloud
-    API_URL_SSR: http://backend-partner-portal-cords.stage.ubriety.cloud:3001
+    API_URL: https://backend-partners-cords.stage.ubriety.cloud
   rules:
     - if: $CI_COMMIT_BRANCH == 'main'
   stage: setup
   environment:
-    name: stage/$CI_PROJECT_PATH_SLUG-$CI_COMMIT_REF_SLUG
-    url: https://partner-portal-cords.stage.ubriety.cloud
+    name: main
+    url: https://partners-cords.stage.ubriety.cloud
   script: |
-    ./tools/deploy /home/ubuntu/sites/partner-portal-mentor
+    ./tools/deploy /home/ubuntu/sites/partner-portal-cords
