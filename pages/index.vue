@@ -23,7 +23,7 @@
     gap: 20px;
   }
   .code {
-    background-color: #000000;
+    background-color: #1d1c3b;
     border-radius: 3px;
     padding: 10px;
     color: #ffffff;
