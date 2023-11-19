@@ -12,7 +12,7 @@ jobs:
       ROUTERNAME: partners
       HOSTNAME: partners.cords.dev
       FIREBASE_API_KEY: AIzaSyAUUty3Ov1ZHfRczOg4IcR53NMv9NulJhk
-      FIREBASE_AUTH_DOMAIN: cords-f3c79.firebaseapp.com
+      FIREBASE_AUTH_DOMAIN: auth.cords.ai
       FIREBASE_PROJECT_ID: cords-f3c79
       FIREBASE_STORAGE_BUCKET: cords-f3c79.appspot.com
       FIREBASE_MESSAGING_SENDER_ID: 758862061723
