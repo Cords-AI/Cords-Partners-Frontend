@@ -1,0 +1,27 @@
+name: Deploy Prod
+
+on:
+  push:
+    branches:
+      - release/prod
+
+jobs:
+  Deploy-Dev:
+    runs-on: frontend-prod
+    env:
+      ROUTERNAME: partners
+      HOSTNAME: partners.cords.ai
+      FIREBASE_API_KEY: AIzaSyAUUty3Ov1ZHfRczOg4IcR53NMv9NulJhk
+      FIREBASE_AUTH_DOMAIN: auth.cords.ai
+      FIREBASE_PROJECT_ID: cords-f3c79
+      FIREBASE_STORAGE_BUCKET: cords-f3c79.appspot.com
+      FIREBASE_MESSAGING_SENDER_ID: 758862061723
+      FIREBASE_APP_ID: 1:758862061723:web:1a99cace4ece114c1be63e
+      API_URL: https://partners.api.cords.ai
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+          submodules: true
+      - run: ./tools/deploy /home/ubuntu/docker/cords-partners
