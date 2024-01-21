@@ -4,17 +4,17 @@
       @click="onContinueWithGoogle"
       outline="false"
     >
-      Continue with Google
+      {{ t('sign-in-with-google') }}
     </CordsKitButton>
     <div class="or">
       <div class="separator" />
-      <div>or</div>
+      <div>{{ t('or') }}</div>
       <div class="separator" />
     </div>
     <CordsKitButton
       @click="onContinueWithEmail"
     >
-      Continue with email
+      {{ t('sign-in-with-email') }}
     </CordsKitButton>
   </div>
 </template>
@@ -22,6 +22,10 @@
 <script lang="ts" setup>
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import Backend from '~/src/Backend';
+
+const { t } = useI18n({
+  useScope: 'local',
+});
 
 const router = useRouter();
 
@@ -41,7 +45,7 @@ const onContinueWithGoogle = async () => {
 };
 
 const onContinueWithEmail = async () => {
-  q.notify('Not Implemented');
+  q.notify(t('not-implemented'));
 };
 </script>
 
@@ -86,3 +90,16 @@ body[data-path="sign-in"] {
   }
 }
 </style>
+
+<i18n lang="yaml">
+en:
+  sign-in-with-google: Sign in with Google
+  sign-in-with-email: Sign in with email
+  or: or
+  not-implemented: Not Implemented
+fr:
+  sign-in-with-google: Connexion avec Google
+  sign-in-with-email: Connexion avec courriel
+  or: ou
+  not-implemented: Non disponible
+</i18n>

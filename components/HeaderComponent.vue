@@ -2,6 +2,10 @@
   <header>
     <CordsKitLogo />
     <div class="actions">
+      <q-btn round flat @click="toggleLanguage">
+        <q-icon class="language-toggle-button" name="language" />
+        <q-tooltip>{{ t('tooltip') }}</q-tooltip>
+      </q-btn>
       <UserComponent
         v-if="user"
         :user="user"
@@ -14,6 +18,18 @@
 import type User from '~/src/User';
 
 defineProps<{ user: User }>();
+
+const { t } = useI18n({
+  useScope: 'local',
+});
+
+const i18n = useI18n();
+
+const switchLocalePath = useSwitchLocalePath();
+
+const toggleLanguage = () => {
+  navigateTo(switchLocalePath(i18n.locale.value === 'en' ? 'fr' : 'en'));
+};
 </script>
 
 <style lang="scss" scoped>
@@ -38,6 +54,19 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: right;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .language-toggle-button {
+    font-size: 24px;
   }
 }
 </style>
+
+<i18n lang="yaml">
+en:
+  tooltip: En français
+fr:
+  tooltip: In English
+</i18n>

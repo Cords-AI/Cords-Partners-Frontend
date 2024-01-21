@@ -1,9 +1,9 @@
 <template>
   <div class="content">
     <div class="panel">
-      <div class="text-h5">API Key</div>
+      <div class="text-h5">{{ t('api-key') }}</div>
       <div class="code">{{apiKey}}</div>
-      <a href="#" @click.prevent="onRefresh">Refresh</a>
+      <a href="#" @click.prevent="onRefresh">{{ t('refresh') }}</a>
     </div>
   </div>
 </template>
@@ -35,13 +35,29 @@
 <script lang="ts" setup>
 import Backend from '~/src/Backend';
 
+const { t } = useI18n({
+  useScope: 'local',
+});
+
 const backend = Backend.getInstance();
 const apiKey = ref(await backend.getApiKey());
 
 const onRefresh = async () => {
-  if(!confirm("Existing key will be revoked! Are you sure you want to continue?")) {
+  // eslint-disable-next-line
+  if (!confirm(t('confirm'))) {
     return;
   }
   apiKey.value = await backend.getApiKey(true);
-}
+};
 </script>
+
+<i18n lang="yaml">
+en:
+  refresh: Refresh
+  confirm: Existing key will be revoked! Are you sure you want to continue?
+  api-key: API Key
+fr:
+  refresh: Rafraîchir
+  confirm: La clé existante sera révoquée ! Êtes-vous sûr de vouloir continuer ?
+  api-key: Clé API
+</i18n>

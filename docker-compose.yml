@@ -7,8 +7,7 @@ networks:
 
 services:
   web:
-    image: ghcr.io/cords-connect/node:1.0.0
-    profiles: ['manual']
+    image: ghcr.io/cords-ai/cords-node-docker-image:v1.0.1
     build: ./docker
     restart: always
     volumes:
@@ -19,11 +18,10 @@ services:
       - traefik.enable=true
       - traefik.http.routers.$ROUTERNAME.rule=Host(`$HOSTNAME`)
       - traefik.http.routers.$ROUTERNAME.tls=true
-      - traefik.http.routers.$ROUTERNAME.entrypoints=https
       - traefik.http.services.$ROUTERNAME.loadbalancer.server.port=3000
 
   dev:
-    image: ghcr.io/cords-connect/node:1.0.0
+    image: ghcr.io/cords-ai/cords-node-docker-image:v1.0.1
     profiles: ['manual']
     volumes:
       - .:/app
@@ -34,11 +32,10 @@ services:
       - traefik.enable=true
       - traefik.http.routers.$ROUTERNAME.rule=Host(`$HOSTNAME`)
       - traefik.http.routers.$ROUTERNAME.tls=true
-      - traefik.http.routers.$ROUTERNAME.entrypoints=https
       - traefik.http.services.$ROUTERNAME.loadbalancer.server.port=3000
 
   jsonserver:
-    image: ghcr.io/cords-connect/node:1.0.0
+    image: ghcr.io/cords-ai/cords-node-docker-image:v1.0.1
     profiles: ['manual']
     hostname: backend-$HOSTNAME
     volumes:
@@ -49,11 +46,10 @@ services:
       - traefik.enable=true
       - traefik.http.routers.$ROUTERNAME-backend.rule=Host(`backend-$HOSTNAME`)
       - traefik.http.routers.$ROUTERNAME-backend.tls=true
-      - traefik.http.routers.$ROUTERNAME-backend.entrypoints=https
       - traefik.http.services.$ROUTERNAME-backend.loadbalancer.server.port=3001
 
   test:
-    image: ghcr.io/cords-connect/node:1.0.0
+    image: ghcr.io/cords-ai/cords-node-docker-image:v1.0.1
     profiles: ['manual']
     volumes:
       - .:/app

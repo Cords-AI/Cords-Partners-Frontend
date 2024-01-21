@@ -9,6 +9,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+  "lint-staged": {
+    "**/*.{vue,ts,js}": "eslint"
+  },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@vueuse/nuxt": "^10.5.0",
@@ -23,6 +26,7 @@
   "dependencies": {
     "firebase": "^10.5.0",
     "nuxt-quasar-ui": "^2.0.6",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "frontendkit": "file:./lib/kit"
   }
 }

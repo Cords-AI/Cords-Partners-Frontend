@@ -62,7 +62,7 @@
         </div>
         <div class="user-dropdown-row sign-out-row">
           <a @click.prevent="signOut()">
-            <CordsKitButton class="compact rect outline">Sign Out</CordsKitButton>
+            <CordsKitButton class="compact rect outline">{{ t('sign-out') }}</CordsKitButton>
           </a>
         </div>
       </div>
@@ -91,6 +91,10 @@ const signOut = async () => {
   await backend.signOut();
   window.location.reload();
 };
+
+const { t } = useI18n({
+  useScope: 'local',
+});
 </script>
 
 <style lang="scss" scoped>
@@ -208,3 +212,10 @@ const signOut = async () => {
   }
 }
 </style>
+
+<i18n lang="yaml">
+en:
+  sign-out: Sign out
+fr:
+  sign-out: Déconnecter
+</i18n>

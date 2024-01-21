@@ -2,9 +2,17 @@ export default defineNuxtConfig({
   css: [`~/style.scss`],
   ssr: false,
   modules: [
-    'nuxt-quasar-ui',
-    '@vueuse/nuxt',
+    'frontendkit'
   ],
+  i18n: {
+    locales: [
+      { code: "en" },
+      { code: "fr" }
+    ],
+    strategy: 'prefix',
+    defaultLocale: 'en',
+    detectBrowserLanguage: false,
+  },
   quasar : {
     plugins: ['Notify']
   },
