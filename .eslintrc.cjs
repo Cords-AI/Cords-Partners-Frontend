@@ -18,7 +18,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
-    'class-methods-use-this': 'off'
+    'class-methods-use-this': 'off',
+    'import/prefer-default-export': 'off'
   }
 }
 

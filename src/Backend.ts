@@ -1,4 +1,6 @@
+import { getAuth, signOut } from 'firebase/auth';
 import User from './User';
+import { getFirebaseUser } from './getFirebaseUser';
 
 export default class Backend {
   private static instance: Backend | null = null;
@@ -6,6 +8,8 @@ export default class Backend {
   private url: string;
 
   private user: User | null;
+
+  private accessToken;
 
   private constructor() {
     const config = useRuntimeConfig();
@@ -22,10 +26,9 @@ export default class Backend {
   async getUser(): Promise<User | null> {
     if (!this.user) {
       try {
-        const response = await useFetch(`${this.url}/user`, {
-          credentials: 'include',
-        });
-        this.user = new User(unref(response.data));
+        const firebaseUser = await getFirebaseUser();
+        this.accessToken = firebaseUser.accessToken;
+        this.user = new User(firebaseUser);
       } catch (e) {
         // ts-ignore
       }
@@ -45,20 +48,20 @@ export default class Backend {
   }
 
   async signOut() {
-    await useFetch(`${this.url}/user/sign-out`, {
-      method: 'POST',
-      credentials: 'include',
-    });
+    const auth = getAuth();
+    await signOut(auth);
     this.user = null;
   }
 
   async getApiKey(refresh = false) {
     const body: any = {};
     body.refresh = refresh;
-    const response = await $fetch(`${this.url}/api-key`, {
+    const response: any = await $fetch(`${this.url}/api-key`, {
       method: 'POST',
-      credentials: 'include',
-      body: body
+      body,
+      headers: {
+        'x-api-key': this.accessToken,
+      },
     });
     return response.data?.apiKey;
   }

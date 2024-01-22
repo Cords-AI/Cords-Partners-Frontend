@@ -1,9 +1,11 @@
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 
-export default defineNuxtPlugin({
-  hooks: {
-    'app:created': async () => { // eslint-disable-line
-      const nuxtApp = useNuxtApp();
+declare const window: any;
+
+export function getFirebaseUser() {
+  return new Promise((resolve) => {
+    if (!window.firebaseApp) {
       const config = useRuntimeConfig();
       const firebaseConfig: any = {
         apiKey: config.public.FIREBASE_API_KEY,
@@ -14,7 +16,15 @@ export default defineNuxtPlugin({
         appId: config.public.FIREBASE_APP_ID,
       };
       const firebaseApp = initializeApp(firebaseConfig);
-      nuxtApp.vueApp.provide('firebaseApp', firebaseApp);
-    },
-  },
-});
+      window.firebaseApp = firebaseApp;
+    }
+
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        resolve(user);
+      }
+      resolve(null);
+    });
+  });
+}

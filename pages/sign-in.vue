@@ -1,8 +1,8 @@
 <template>
   <div class="panel">
     <CordsKitButton
-      @click="onContinueWithGoogle"
       outline="false"
+      @click="onContinueWithGoogle"
     >
       {{ t('sign-in-with-google') }}
     </CordsKitButton>

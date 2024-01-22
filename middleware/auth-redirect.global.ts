@@ -1,4 +1,4 @@
-import Backend from '~/src/Backend';
+import { getFirebaseUser } from '~/src/getFirebaseUser';
 
 function getLocale(path: string): string {
   if (path.match('^/$')) {
@@ -17,16 +17,15 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     return navigateTo(`/${locale}`);
   }
 
-  const backend = Backend.getInstance();
-  const user = await backend.getUser();
+  const user = await getFirebaseUser();
 
   const signInPath = to.path.match('^/(?:en|fr)/sign-in(?:[/]?.*)');
 
-  if (user?.id && signInPath) {
+  if (user && signInPath) {
     return navigateTo(`/${locale}`);
   }
 
-  if (!user?.id && !signInPath) {
+  if (!user && !signInPath) {
     return navigateTo(`/${locale}/sign-in`);
   }
 

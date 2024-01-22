@@ -10,11 +10,10 @@ export default class User {
   private avatar: string;
 
   constructor(data: any) {
-    this.id = data.id;
-    this.initials = data.initials;
-    this.name = data.name;
+    this.id = data.uid;
+    this.name = data.displayName;
     this.email = data.email;
-    this.avatar = data.avatar;
+    this.avatar = data.photoURL;
   }
 
   getAvatar() {
