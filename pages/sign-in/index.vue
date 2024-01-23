@@ -1,5 +1,8 @@
 <template>
   <div class="panel">
+    <h1 class="title">
+      {{ t('cords-partner-portal') }}
+    </h1>
     <CordsKitButton
       outline="false"
       @click="onContinueWithGoogle"
@@ -11,11 +14,12 @@
       <div>{{ t('or') }}</div>
       <div class="separator" />
     </div>
-    <CordsKitButton
-      @click="onContinueWithEmail"
+    <NuxtLink
+      class="sign-in-with-email-link"
+      :to="localePath('/sign-in/email')"
     >
       {{ t('sign-in-with-email') }}
-    </CordsKitButton>
+    </NuxtLink>
   </div>
 </template>
 
@@ -49,31 +53,8 @@ const onContinueWithEmail = async () => {
 };
 </script>
 
-<style lang="scss">
-body[data-path="sign-in"] {
-  .content {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-  }
-}
-</style>
-
 <style lang="scss" scoped>
 .panel {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin: 0 auto;
-  gap: 5px;
-  padding: 40px;
-  max-width: 400px;
-  width: 100%;
-  button {
-    width: 100%;
-  }
   .or {
     padding: 10px 0;
     display: flex;
@@ -89,17 +70,23 @@ body[data-path="sign-in"] {
     }
   }
 }
+.sign-in-with-email-link {
+  text-decoration: none;
+  color: rgb(71, 82, 102);
+}
 </style>
 
 <i18n lang="yaml">
 en:
-  sign-in-with-google: Sign in with Google
-  sign-in-with-email: Sign in with email
+  sign-in-with-google: Continue with Google
+  sign-in-with-email: Continue with email
   or: or
   not-implemented: Not Implemented
+  cords-partner-portal: Partners
 fr:
   sign-in-with-google: Connexion avec Google
   sign-in-with-email: Connexion avec courriel
   or: ou
   not-implemented: Non disponible
+  cords-partner-portal: Partenaires
 </i18n>

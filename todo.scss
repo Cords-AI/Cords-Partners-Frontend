@@ -23,3 +23,37 @@ body, html {
   flex-grow: 1;
 }
 
+.panel {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 20px;
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  button {
+    width: 100%;
+  }
+}
+
+header {
+  > a {
+    color: unset;
+    [data-path="front"] &,
+    [data-path="sign-in"] & {
+      pointer-events: none;
+    }
+    &:visited {
+      color: unset;
+    }
+  }
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: rgb(71, 82, 102);
+}

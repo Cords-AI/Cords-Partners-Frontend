@@ -14,6 +14,7 @@ export default class User {
     this.name = data.displayName;
     this.email = data.email;
     this.avatar = data.photoURL;
+    this.initials = data.email[0].toUpperCase();
   }
 
   getAvatar() {

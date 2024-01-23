@@ -1,9 +1,18 @@
 <template>
   <header>
-    <CordsKitLogo />
+    <NuxtLink to="/">
+      <CordsKitLogo />
+    </NuxtLink>
     <div class="actions">
-      <q-btn round flat @click="toggleLanguage">
-        <q-icon class="language-toggle-button" name="language" />
+      <q-btn
+        round
+        flat
+        @click="toggleLanguage"
+      >
+        <q-icon
+          class="language-toggle-button"
+          name="language"
+        />
         <q-tooltip>{{ t('tooltip') }}</q-tooltip>
       </q-btn>
       <UserComponent

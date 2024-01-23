@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "lint-staged": {
-    "**/*.{vue,ts,js}": "eslint"
+    "**/*.{vue,ts,js}": "eslint --fix"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -20,13 +20,13 @@
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-plugin-vue": "^9.17.0",
     "nuxt": "^3.8.0",
-    "vue": "^3.3.6",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
     "firebase": "^10.5.0",
     "nuxt-quasar-ui": "^2.0.6",
     "sass": "^1.69.5",
-    "frontendkit": "file:./lib/kit"
+    "frontendkit": "file:./lib/kit",
+    "vue": "^3.3.6"
   }
 }
