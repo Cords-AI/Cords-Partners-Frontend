@@ -22,18 +22,24 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   const user: any = await getFirebaseUser();
   window.user = user;
 
-  const signInPath = !!to.path.match('^/(?:en|fr)/sign-in(?:[/]?.*)')?.length;
+  const isSignInPath = !!to.path.match('^/(?:en|fr)/sign-in(?:[/]?.*)')?.length;
 
-  if (!user && !signInPath) {
+  const isVerifyPath = !!to.path.match('^/(?:en|fr)/account/verify')?.length;
+
+  if (user) {
+    if (!user.emailVerified && !isVerifyPath) {
+      return navigateTo(`/${locale}/account/verify`);
+    }
+    if (user.emailVerified && isVerifyPath) {
+      return navigateTo(`/${locale}`);
+    }
+    if (isSignInPath) {
+      return navigateTo(`/${locale}`);
+    }
+  }
+
+  if (!user && !isSignInPath) {
     return navigateTo(`/${locale}/sign-in`);
-  }
-
-  if (user && !user.emailVerified && !signInPath) {
-    return navigateTo(`/${locale}/sign-in/verify`);
-  }
-
-  if (user && user.emailVerified && signInPath) {
-    return navigateTo(`/${locale}`);
   }
 
   return null;

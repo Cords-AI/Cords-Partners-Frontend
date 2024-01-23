@@ -1,7 +1,7 @@
 <template>
   <div class="panel">
     <h1 class="title">
-      {{ t('sign-in') }}
+      {{ t('create-account') }}
     </h1>
     <q-input
       v-model="email"
@@ -28,21 +28,17 @@
     </q-input>
     <CordsKitButton
       outline="false"
-      @click="onSignIn"
-    >
-      {{ t('sign-in') }}
-    </CordsKitButton>
-    <NuxtLink
-      class="sign-in-with-email-link"
-      :to="localePath('/sign-in/email/create')"
+      @click="onCreateAccount"
     >
       {{ t('create-account') }}
-    </NuxtLink>
+    </CordsKitButton>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword, getAuth, sendEmailVerification, type UserCredential,
+} from 'firebase/auth';
 
 const { t } = useI18n({
   useScope: 'local',
@@ -56,16 +52,22 @@ const password = ref();
 
 const isPwd = ref(true);
 
-const localePath = useLocalePath();
+const existsError = ref(false);
 
-const onSignIn = async () => {
-  const auth = getAuth();
-  signInWithEmailAndPassword(auth, email.value, password.value)
-    .then((userCredential) => {
-      window.location.href = '/';
+const onCreateAccount = async () => {
+  existsError.value = false;
+  createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+    .then((userCredential: UserCredential) => {
+      sendEmailVerification(userCredential.user)
+        .then(() => {
+          window.location.href = '/';
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     })
     .catch((error) => {
-      q.notify(t('invalid'));
+      q.notify(t('email-exists'));
     });
 };
 </script>
@@ -73,18 +75,16 @@ const onSignIn = async () => {
 <i18n lang="yaml">
 en:
   sign-in: Sign in
-  not-implemented: Non implemented
   email: Email
   password: Password
-  invalid: Invalid email or password
   create-account: Create account
+  email-exists: An account already exists with this email address
 fr:
   sign-in: Connexion
-  not-implemented: Non disponible
   email: Courriel
   password: Mot de passe
-  invalid: Courriel ou mot de passe invalide
   create-account: Créer un compte
+  email-exists: Un compte existe déjà avec cette adresse courriel
 </i18n>
 
 <style lang="scss" scoped>
@@ -98,5 +98,8 @@ a {
   color: unset;
   text-decoration: unset;
   color: var(--cords-gray);
+}
+.error {
+  color: #ff0000;
 }
 </style>

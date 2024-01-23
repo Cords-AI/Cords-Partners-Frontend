@@ -9,8 +9,6 @@ export default class Backend {
 
   private user: User | null;
 
-  private accessToken;
-
   private constructor() {
     const config = useRuntimeConfig();
     this.url = config.public.API_URL;
@@ -37,16 +35,6 @@ export default class Backend {
     return this.user;
   }
 
-  async signIn(token: string) {
-    const response = await useFetch(`${this.url}/user/sign-in`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
   async signOut() {
     const auth = getAuth();
     await signOut(auth);
@@ -56,11 +44,12 @@ export default class Backend {
   async getApiKey(refresh = false) {
     const body: any = {};
     body.refresh = refresh;
-    const response: any = await $fetch(`${this.url}/api-key`, {
+    const token = await getAuth().currentUser?.getIdToken(true) as string;
+    const response: any = await $fetch(`${this.url}/partner/api-key`, {
       method: 'POST',
       body,
       headers: {
-        'x-api-key': this.accessToken,
+        'x-api-key': token,
       },
     });
     return response.data?.apiKey;

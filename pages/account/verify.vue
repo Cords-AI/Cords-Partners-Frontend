@@ -7,18 +7,8 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeMount } from 'vue';
-
-declare const window: any;
-
 const { t } = useI18n({
   useScope: 'local',
-});
-
-onBeforeMount(() => {
-  if (!window.user) {
-    navigateTo('/');
-  }
 });
 </script>
 

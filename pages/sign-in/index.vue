@@ -37,39 +37,16 @@ const provider = new GoogleAuthProvider();
 
 const firebaseApp: any = inject('firebaseApp');
 
-const backend = Backend.getInstance();
-
 const q = useQuasar();
 
 const onContinueWithGoogle = async () => {
   const auth = getAuth(firebaseApp);
   const response = await signInWithPopup(auth, provider);
-  await backend.signIn(response.user.accessToken);
-  window.location.reload();
-};
-
-const onContinueWithEmail = async () => {
-  q.notify(t('not-implemented'));
+  window.location.href = '/';
 };
 </script>
 
 <style lang="scss" scoped>
-.panel {
-  .or {
-    padding: 10px 0;
-    display: flex;
-    width: 100%;
-    gap: 10px;
-    text-transform: uppercase;
-    font-weight: bold;
-    align-items: center;
-    .separator {
-      flex-grow: 1;
-      height: 1px;
-      background-color: #D6D6D6;
-    }
-  }
-}
 .sign-in-with-email-link {
   text-decoration: none;
   color: rgb(71, 82, 102);
