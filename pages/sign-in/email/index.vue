@@ -34,6 +34,12 @@
     </CordsKitButton>
     <NuxtLink
       class="sign-in-with-email-link"
+      :to="localePath('/sign-in/email/forgot')"
+    >
+      {{ t('forgot-password') }}
+    </NuxtLink>
+    <NuxtLink
+      class="sign-in-with-email-link"
       :to="localePath('/sign-in/email/create')"
     >
       {{ t('create-account') }}
@@ -62,7 +68,7 @@ const onSignIn = async () => {
   const auth = getAuth();
   signInWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {
-      window.location.href = '/';
+      window.location.href = localePath('/');
     })
     .catch((error) => {
       q.notify(t('invalid'));
@@ -78,6 +84,7 @@ en:
   password: Password
   invalid: Invalid email or password
   create-account: Create account
+  forgot-password: Forgot Password?
 fr:
   sign-in: Connexion
   not-implemented: Non disponible
@@ -85,6 +92,7 @@ fr:
   password: Mot de passe
   invalid: Courriel ou mot de passe invalide
   create-account: Créer un compte
+  forgot-password: Mot de passe oublié ?
 </i18n>
 
 <style lang="scss" scoped>
