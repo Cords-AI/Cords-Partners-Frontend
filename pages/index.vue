@@ -18,21 +18,18 @@
 </template>
 
 <script lang="ts" setup>
-import Backend from '~/src/Backend';
-
 const { t } = useI18n({
   useScope: 'local',
 });
 
-const backend = Backend.getInstance();
-const apiKey = ref(await backend.getApiKey());
+const apiKey = ref(await PlatformApi.getApiKey());
 
 const onRefresh = async () => {
   // eslint-disable-next-line
   if (!confirm(t('confirm'))) {
     return;
   }
-  apiKey.value = await backend.getApiKey(true);
+  apiKey.value = await PlatformApi.getApiKey(true);
 };
 </script>
 

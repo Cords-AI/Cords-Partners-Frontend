@@ -23,6 +23,7 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "cordsfrontendkit": "file:./lib/cordskit",
     "firebase": "^10.5.0",
     "nuxt-quasar-ui": "^2.0.6",
     "sass": "^1.69.5",

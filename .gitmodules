@@ -4,6 +4,3 @@
 [submodule "lib/cordskit"]
 	path = lib/cordskit
 	url = ../CordsFrontendKit.git
-[submodule "docker"]
-	path = docker
-	url = ../cords-node-docker-image.git

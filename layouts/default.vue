@@ -1,15 +1,13 @@
 <template>
-  <HeaderComponent :user="user" />
+  <CordskitHeader :user="user" />
   <slot />
-  <FooterComponent />
+  <CordskitFooter />
 </template>
 
 <script lang="ts" setup>
-import Backend from '~/src/Backend';
-
-const user = await Backend.getInstance().getUser();
+const user = useState('user');
 
 useHead({
-  title: 'Cords Partner Portal',
+  title: 'CORDS Platform',
 });
 </script>
