@@ -44,6 +44,7 @@ export default defineNuxtConfig({
       API_URL: process.env.API_URL,
       PLATFORM_API_URL: process.env.PLATFORM_API_URL,
       ACCOUNT_URL: process.env.ACCOUNT_URL,
+      FEATURE_MULTIPLE_KEYS: process.env.FEATURE_MULTIPLE_KEYS
     }
   },
 })
